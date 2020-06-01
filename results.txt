@@ -1,0 +1,72 @@
+### Lab 5 results
+
+# Zihao Guo
+# zg866
+
+# Part 1 results
+Silhouette with squared euclidean distance = 0.026891945121731386
+
+As we can see, the Silhouette gives a value around 0.02, which is in the middle position of the range of silhouette -1 to 1. This means points in a cluster are relatively close to other points in the same cluster and not that far from other points at the other cluster. This might be improved by some feature engineering, new distance measure or different K.
+
+# Part 2 results
+Best Model Parameters:  {Param(parent='LogisticRegression_d98573873e43', name='aggregationDepth', doc='suggested depth for treeAggregate (>= 2)'): 2, Param(parent='LogisticRegression_d98573873e43', name='family', doc='The name of family which is a description of the label distribution to be used in the model. Supported options: auto, binomial, multinomial.'): 'auto', Param(parent='LogisticRegression_d98573873e43', name='fitIntercept', doc='whether to fit an intercept term'): True, Param(parent='LogisticRegression_d98573873e43', name='predictionCol', doc='prediction column name'): 'prediction', Param(parent='LogisticRegression_d98573873e43', name='probabilityCol', doc='Column name for predicted class conditional probabilities. Note: Not all models output well-calibrated probability estimates! These probabilities should be treated as confidences, not precise probabilities'): 'probability', Param(parent='LogisticRegression_d98573873e43', name='rawPredictionCol', doc='raw prediction (a.k.a. confidence) column name'): 'rawPrediction', Param(parent='LogisticRegression_d98573873e43', name='standardization', doc='whether to standardize the training features before fitting the model'): True, Param(parent='LogisticRegression_d98573873e43', name='threshold', doc='threshold in binary classification prediction, in range [0, 1]'): 0.5, Param(parent='LogisticRegression_d98573873e43', name='tol', doc='the convergence tolerance for iterative algorithms (>= 0)'): 1e-06, Param(parent='LogisticRegression_d98573873e43', name='elasticNetParam', doc='the ElasticNet mixing parameter, in range [0, 1]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty'): 0.1, Param(parent='LogisticRegression_d98573873e43', name='featuresCol', doc='features column name'): 'scaled_features', Param(parent='LogisticRegression_d98573873e43', name='labelCol', doc='label column name'): 'label', Param(parent='LogisticRegression_d98573873e43', name='maxIter', doc='maximum number of iterations (>= 0)'): 20, Param(parent='LogisticRegression_d98573873e43', name='regParam', doc='regularization parameter (>= 0)'): 0.01}
+-----------------------------
+Overall Statistics Summary
+precision = 0.41470817788069814
+Recall = 0.41470817788069814
+F1 Score = 0.41470817788069814
+-----------------------------
+Weighted recall = 0.41470817788069814
+Weighted precision = 0.37959873022960294
+Weighted F(1) Score = 0.34103865935177363
+-----------------------------
+Class 0.0 precision = 0.45481255320625325
+Class 0.0 recall = 0.8117535115541459
+Class 0.0 F1 Measure = 0.5829868609876658
+Class 1.0 precision = 0.33591757399535405
+Class 1.0 recall = 0.42685140562248997
+Class 1.0 F1 Measure = 0.3759641319054483
+Class 2.0 precision = 0.41270398015270443
+Class 2.0 recall = 0.4291038470091172
+Class 2.0 F1 Measure = 0.4207441647497465
+Class 3.0 precision = 0.327741935483871
+Class 3.0 recall = 0.006091127098321343
+Class 3.0 F1 Measure = 0.011959976456739258
+Class 4.0 precision = 0.30253929866989115
+Class 4.0 recall = 0.05127049180327869
+Class 4.0 F1 Measure = 0.08768179428771684
+Class 5.0 precision = 0.0
+Class 5.0 recall = 0.0
+Class 5.0 F1 Measure = 0.0
+Class 6.0 precision = 0.3488372093023256
+Class 6.0 recall = 0.0003184713375796178
+Class 6.0 F1 Measure = 0.0006363617079948242
+Class 7.0 precision = 1.0
+Class 7.0 recall = 3.15955766192733e-05
+Class 7.0 F1 Measure = 6.31891567407033e-05
+Class 8.0 precision = 0.31016731016731014
+Class 8.0 recall = 0.009077212806026365
+Class 8.0 F1 Measure = 0.01763823324916749
+Class 9.0 precision = 0.0
+Class 9.0 recall = 0.0
+Class 9.0 F1 Measure = 0.0
+Class 10.0 precision = 0.7418749382594093
+Class 10.0 recall = 0.568939393939394
+Class 10.0 F1 Measure = 0.6439994854864297
+Class 11.0 precision = 0.0
+Class 11.0 recall = 0.0
+Class 11.0 F1 Measure = 0.0
+Class 12.0 precision = 0.0
+Class 12.0 recall = 0.0
+Class 12.0 F1 Measure = 0.0
+Class 13.0 precision = 0.0
+Class 13.0 recall = 0.0
+Class 13.0 F1 Measure = 0.0
+Class 14.0 precision = 0.0
+Class 14.0 recall = 0.0
+Class 14.0 F1 Measure = 0.0
+Class 15.0 precision = 0.0
+Class 15.0 recall = 0.0
+Class 15.0 F1 Measure = 0.0
+
+From the overall statistics, we can see that precision equals recall, which means that false positive has the same number as false negative. However, when we look at the weighted recall, precision, f1 score, there is difference. This shows we have imbalanced data, which is normal because we have 15 labels. It would be unrealistic to have them all equally appeared in data. Thus, we want to see these three statistics for each label. For example, Class 7 might be a minority class because it has really low recall with a normal precision value. Class 0 should be a majority class because it has a high recall with a normal precision value. For classes with 0 across all 3 statistics, it means our model performs really bad on those classes because this indicates we have no true positive. So this could be improved by resampling the data before running models.
